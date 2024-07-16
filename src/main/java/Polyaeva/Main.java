@@ -22,14 +22,8 @@ public class Main {
                     "Body: " + request.getBody();
             write(text, responseStream);
         });
-        server.addHandler(AllowedMethod.POST, "/form", (request, responseStream) -> {
-            final String text = "<h1>Params: " + request.getPostParams() + "</h1>\n" +
-                    "<h1>\"Hello\" param: " + request.getPostParam("hello") + "</h1>";
-            write(text, responseStream);
-        });
         server.start();
     }
-
     private static void write(String content, BufferedOutputStream out) throws IOException {
         final String responseBuilder = "HTTP/1.1 200 OK\r\n" +
                 "Content-Type: text/html\r\n" +
@@ -42,3 +36,4 @@ public class Main {
         System.out.println(content);
     }
 }
+

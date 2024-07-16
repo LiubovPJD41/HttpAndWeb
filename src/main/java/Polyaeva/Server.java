@@ -15,7 +15,6 @@ public class Server {
     private static final List<String> VALID_PATHS = List.of("/index.html", "/spring.svg", "/spring.svg", "/resources.html", "/styles.css", "/app.js", "/links.html", "/forms.html", "/classic.html", "/events.html", "/events.js");
     public final int PORT = 9999;
     public final int NUMBER_OF_THREADS = 64;
-
     private final Map<String, Handler> handlerMap = new ConcurrentHashMap<>();
 
     public void start() {
@@ -54,7 +53,6 @@ public class Server {
                 Response.badRequest(out);
                 return;
             }
-
             final Handler handler = handlerMap.get(request.getMethod() + " " + request.getPath());
             if (handler == null) {
                 if (!VALID_PATHS.contains(request.getPath())) {
@@ -69,3 +67,4 @@ public class Server {
         }
     }
 }
+
